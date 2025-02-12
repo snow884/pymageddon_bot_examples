@@ -20,7 +20,7 @@ if not run_away_dir:
     run_away_dir = 0
 
 if not mode:
-    mode = 0
+    mode = "random"
 
 if not last_x:
     last_x = 0
@@ -68,8 +68,10 @@ if mode == "run_away":
 
     if (last_x == parent_object["x"]) and (last_y == parent_object["y"]):
         stuck_num = stuck_num + 1
+    else:
+        stuck_num = 0
 
-    if (run_away_num > 50) or (stuck_num > 5):
+    if (chasing_num > 50) or (stuck_num > 5):
         stuck_num = 0
         chasing_num = 0
         run_away_num = 0
@@ -123,6 +125,8 @@ if mode == "chase":
 
     if (last_x == parent_object["x"]) and (last_y == parent_object["y"]):
         stuck_num = stuck_num + 1
+    else:
+        stuck_num = 0
 
     if (chasing_num > 50) or (stuck_num > 5):
         stuck_num = 0
@@ -195,7 +199,7 @@ if mode == "random":
 
     random_num = random_num + 1
 
-    if random_randint(0, 5) >= 4:
+    if random_randint(0, 2) >= 1:
         intent = random_choice(
             ["ROTATE_UP", "ROTATE_RIGHT", "ROTATE_DOWN", "ROTATE_LEFT", "MOVE_FORWARD"]
         )
